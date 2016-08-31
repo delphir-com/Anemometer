@@ -81,6 +81,19 @@ class AnemometerModel {
         return $this->conf['review_types'];
     }
 
+    public function get_category_list() {
+
+        $result = $this->mysqli->query("SELECT category_id, category_name FROM categories ORDER BY category_name");
+
+        $result_data = array();
+        $result_data[] = ['category_id' => 0, 'category_name' => "* No category set"];
+        while ($row = $result->fetch_assoc()) {
+            $result_data[] = $row;
+        }
+        $result->free();
+        return $result_data;
+    }
+
     /**
      * Get the list of names for the configured data sources
      * @return array    List of strings that describe the data sources

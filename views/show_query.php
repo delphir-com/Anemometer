@@ -359,6 +359,12 @@ $(document).ready( function ()  {
 
 					<div class="row">
 						<div class="span12">
+					<strong>Category: </strong><br><select name="category_id" class="combobox">
+						<?php foreach ($category_list as $ct_row ) { ?>
+							<option value="<?php echo $ct_row["category_id"] ?>" <?php if ($row['category_id'] == $ct_row["category_id"]) { echo ' SELECTED '; } ?>><?php echo $ct_row["category_name"] ?></option>
+						<?php } ?>
+					</select><br>
+
 					<strong>Status: </strong><br><select name="reviewed_status" class="combobox">
 						<?php foreach ($review_types as $rt) { ?>
 							<option value="<?php echo $rt ?>" <?php if ($row['reviewed_status'] == $rt) { echo ' SELECTED '; } ?>><?php echo $rt ?></option>

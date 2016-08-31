@@ -313,7 +313,7 @@ class Anemometer {
             $data['table_fields_selected'] = get_var('table_fields');
             $data['exception_select_fields'] = $this->exception_select_fields;
 
-
+            $data['category_list'] = $this->data_model->get_category_list();
             $data['review_types'] = $this->data_model->get_review_types();
             $data['reviewers'] = $this->data_model->get_reviewers();
 
@@ -424,6 +424,7 @@ class Anemometer {
         $sample = $data['sample'][$sample_field_name];
 
         // review info
+        $data['category_list'] = $this->data_model->get_category_list();
         $data['review_types'] = $this->data_model->get_review_types();
         $data['reviewers'] = $this->data_model->get_reviewers();
         $data['current_auth_user'] = $this->get_auth_user();
@@ -539,6 +540,7 @@ class Anemometer {
             $fields_to_change['reviewed_by'] = get_var('reviewed_by');
             $fields_to_change['reviewed_on'] = date('Y-m-d H:i:s');
             $fields_to_change['reviewed_status'] = get_var('reviewed_status');
+            $fields_to_change['category_id'] = get_var('category_id');
             session_start();
             $_SESSION['current_review_user'] = get_var('reviewed_by');
             session_write_close();
@@ -552,6 +554,7 @@ class Anemometer {
             $fields_to_change['reviewed_by'] = 'NULL';
             $fields_to_change['reviewed_on'] = 'NULL';
             $fields_to_change['reviewed_status'] = 'NULL';
+            $fields_to_change['category_id']     = 0;
         }
 
         $this->data_model->update_query($checksum, $fields_to_change);

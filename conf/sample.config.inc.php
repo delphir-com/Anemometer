@@ -325,6 +325,7 @@ $conf['reports']['slow_query_log'] = array(
 			'sample'	=> 'clear|like|where',
 			'checksum'	=>	'clear|where',
 			'reviewed_status' => 'clear|where',
+			'category_id    ' => 'clear|where',
 
 		),
 

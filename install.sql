@@ -3,6 +3,13 @@ DROP DATABASE IF EXISTS slow_query_log;
 CREATE DATABASE slow_query_log;
 USE slow_query_log;
 
+-- Create categories table
+CREATE TABLE `categories` (
+  `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 -- Create the global query review table
 CREATE TABLE `global_query_review` (
   `checksum` bigint(20) unsigned NOT NULL,
@@ -14,6 +21,7 @@ CREATE TABLE `global_query_review` (
   `reviewed_on` datetime DEFAULT NULL,
   `comments` text,
   `reviewed_status` varchar(24) DEFAULT NULL,
+  `category_id` INT DEFAULT 0 NULL,
   PRIMARY KEY (`checksum`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

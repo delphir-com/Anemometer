@@ -105,6 +105,15 @@
 		<textarea name="fact-where" class="span4" rows="6"><?php echo get_var('fact-where') ?></textarea><br><br>
 		Query Sample Contains<br>
 		<input name="fact-<?php echo $sample_field_name ?>" class="span4" value="<?php echo get_var('fact-'.$sample_field_name) ?>"><br><br>
+
+		Category<br>
+		<select class="span4 combobox" name="fact-category_id">
+			<option value=""></option>
+			<?php foreach ($category_list as $ct_row ) { ?>
+				<option value="<?php echo $ct_row["category_id"] ?>" <?php if (get_var('fact-category_id') == $ct_row["category_id"]) { echo ' SELECTED '; } ?>><?php echo $ct_row["category_name"] ?></option>
+			<?php } ?>
+		</select><br>
+
 		Reviewed Status<br>
 		<select class="span4 combobox" name="fact-reviewed_status">
 			<option value=""></option>
