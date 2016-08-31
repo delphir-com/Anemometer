@@ -49,6 +49,10 @@
     <script src="js/bootstrap-tab.js"></script>
     <script src="js/bootstrap-combobox.js"></script>
     <link href="css/bootstrap-combobox.css" media="screen" rel="stylesheet" type="text/css">
+
+
+    <script src="js/selectize.js" type="text/javascript"></script>
+    <link href="css/selectize.css" media="screen" rel="stylesheet" type="text/css">
     
     
     <style>

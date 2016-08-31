@@ -359,7 +359,8 @@ $(document).ready( function ()  {
 
 					<div class="row">
 						<div class="span12">
-					<strong>Category: </strong><br><select name="category_id" class="combobox">
+					<input type="hidden" id="new_category_id" name="new_category_id" value=""/>
+					<strong>Category: </strong><br><select id="category_id" name="category_id" class="selectize" style="width: 400px;">
 						<?php foreach ($category_list as $ct_row ) { ?>
 							<option value="<?php echo $ct_row["category_id"] ?>" <?php if ($row['category_id'] == $ct_row["category_id"]) { echo ' SELECTED '; } ?>><?php echo $ct_row["category_name"] ?></option>
 						<?php } ?>
@@ -398,6 +399,19 @@ $(document).ready( function ()  {
 	//	$("#dimension-ts_min_start").datetimepicker({ dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm:ss' });
 	// $("#dimension-ts_min_end").datetimepicker({ dateFormat: 'yy-mm-dd', timeFormat: 'hh:mm:ss' });
 		$('.combobox').combobox();
+
+		$('#category_id').selectize({
+			create: true,
+			persist: false,
+			onOptionAdd: function (value) {
+				$('#new_category_id').val(value);
+			},
+			onOptionRemove: function () {
+				$('#new_category_id').val('');
+			}
+
+		});
+
 		prettyPrint();
 
 		$('#graph').on('hidden', function () {

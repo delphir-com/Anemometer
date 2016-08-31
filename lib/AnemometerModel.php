@@ -220,6 +220,13 @@ class AnemometerModel {
         return false;
     }
 
+    public function create_category($new_name){
+        $sql = "INSERT INTO categories SET category_name = '".$this->mysqli->real_escape_string($new_name)."'";
+        $res = $this->mysqli->query($sql);
+        check_mysql_error($res, $this->mysqli);
+        return $this->mysqli->insert_id;
+    }
+
     /**
      * Preform an update query on the given checksum
      *

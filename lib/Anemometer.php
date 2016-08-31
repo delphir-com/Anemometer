@@ -540,7 +540,8 @@ class Anemometer {
             $fields_to_change['reviewed_by'] = get_var('reviewed_by');
             $fields_to_change['reviewed_on'] = date('Y-m-d H:i:s');
             $fields_to_change['reviewed_status'] = get_var('reviewed_status');
-            $fields_to_change['category_id'] = get_var('category_id');
+            $fields_to_change['category_id']     = get_var('category_id');
+
             session_start();
             $_SESSION['current_review_user'] = get_var('reviewed_by');
             session_write_close();
@@ -555,6 +556,12 @@ class Anemometer {
             $fields_to_change['reviewed_on'] = 'NULL';
             $fields_to_change['reviewed_status'] = 'NULL';
             $fields_to_change['category_id']     = 0;
+            $fields_to_change['new_category_id'] = "";
+        }
+
+        $new_category = get_var('new_category_id');
+        if ( $new_category ){
+            $fields_to_change['category_id'] = $this->data_model->create_category($new_category);
         }
 
         $this->data_model->update_query($checksum, $fields_to_change);
