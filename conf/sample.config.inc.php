@@ -325,7 +325,7 @@ $conf['reports']['slow_query_log'] = array(
 			'sample'	=> 'clear|like|where',
 			'checksum'	=>	'clear|where',
 			'reviewed_status' => 'clear|where',
-			'category_id    ' => 'clear|where',
+			'category_id'     => 'clear|where',
 
 		),
 
@@ -409,7 +409,7 @@ $conf['reports']['performance_schema_history'] = array(
 			'DIGEST_TEXT'	=> 'clear|like|where',
 			'DIGEST'	=>	'clear|where',
 			'reviewed_status' => 'clear|where',
-
+			'caetgory_id'     => 'clear|where',
 		),
 
 		'dimension' => array(
