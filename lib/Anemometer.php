@@ -556,7 +556,6 @@ class Anemometer {
             $fields_to_change['reviewed_on'] = 'NULL';
             $fields_to_change['reviewed_status'] = 'NULL';
             $fields_to_change['category_id']     = 0;
-            $fields_to_change['new_category_id'] = "";
         }
 
         $new_category = get_var('new_category_id');
