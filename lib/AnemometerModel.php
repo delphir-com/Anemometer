@@ -82,11 +82,14 @@ class AnemometerModel {
         return $this->conf['review_types'];
     }
 
-    public function get_category_list() {
+    public function get_category_list( $with_all_option = true ) {
 
         $result = $this->mysqli->query("SELECT category_id, category_name FROM categories WHERE category_id > 0 ORDER BY category_name");
 
         $result_data = array();
+        if ( $with_all_option ){
+            $result_data[] = ['category_id' => '', 'category_name' => "** All records"];
+        }
         $result_data[] = ['category_id' => 0, 'category_name' => "* No category set"];
         while ($row = $result->fetch_assoc()) {
             $result_data[] = $row;

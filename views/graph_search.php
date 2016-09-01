@@ -61,7 +61,7 @@
 			<select name="fact-<?php echo $category_field_name ?>" class="span3 combobox">
 				<option value=""></option>
 				<?php foreach ($category_list as $ct_row ) { ?>
-					<option value="<?php echo $ct_row["category_id"] ?: '' ?>" <?php if (get_var("fact-{$category_field_name}")!=null AND get_var("fact-{$category_field_name}") == $ct_row["category_id"] ){ echo ' SELECTED '; } ?>><?php echo $ct_row["category_name"] ?></option>
+					<option value="<?php echo $ct_row["category_id"] ?>" <?php if ( trim(get_var("fact-{$category_field_name}")) === trim($ct_row["category_id"]) ){ echo ' SELECTED '; } ?>><?php echo $ct_row["category_name"] ?></option>
 				<?php } ?>
 			</select>
 			<!--<input type="checkbox" name="<?php echo "fact-pivot-{$category_field_name}" ?>" value='<?php echo $time_field_name ?>'<?php echo (isset($fact_pivot_category_id) ? ' CHECKED ' : '') ?>> Show each category as a separate series-->

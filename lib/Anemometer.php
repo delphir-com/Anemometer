@@ -486,7 +486,7 @@ class Anemometer {
             $data[$data['hostname_field_name']] = get_var($data['hostname_field_name']);
             $this->report_obj->set_pivot_values('dimension-pivot-'.$data['hostname_field_name'], $data['hosts']);
 
-            $data['category_list'] = $this->data_model->get_category_list();
+            $data['category_list'] = $this->data_model->get_category_list(false);
             $data[$data['category_field_name']] = get_var($data['category_field_name']);
             $this->report_obj->set_pivot_values('dimension-pivot-'.$data['category_field_name'], $data['category_list']);
         }
