@@ -20,6 +20,7 @@ class AnemometerModel {
     private $mysqli;
     private $fact_table;
     private $dimension_table;
+    private $categories_table;
 
     /**
      * Constructor.  Initialize the model object
@@ -154,7 +155,7 @@ class AnemometerModel {
 
     public function get_table_aliases()
     {
-        return array( $this->fact_table => 'fact', $this->dimension_table => 'dimension');
+        return array( $this->fact_table => 'fact', $this->dimension_table => 'dimension', $this->categories_table => 'categories');
     }
 
     /**
@@ -453,6 +454,8 @@ class AnemometerModel {
                 return 'ts_min';
             case 'hostname':
                 return 'hostname_max';
+            case 'category_id':
+                return 'category_id';
             case 'fingerprint':
                 return 'fingerprint';
             default:

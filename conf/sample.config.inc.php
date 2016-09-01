@@ -40,7 +40,8 @@ $conf['datasources']['localhost'] = array(
 	'password' => '',
 	'tables' => array(
 		'global_query_review' => 'fact',
-		'global_query_review_history' => 'dimension'
+		'global_query_review_history' => 'dimension',
+		'categories' => 'categories'
 	),
 	'source_type' => 'slow_query_log'
 );
@@ -107,8 +108,8 @@ $conf['default_report_action'] = 'report';
  * been provided.  These will also show up on the query detail page, and the status
  * can be set when you review a query.
  **/
-$conf['reviewers'] = array( 'dba1','dba2');
-$conf['review_types'] = array( 'good', 'bad', 'ticket-created', 'needs-fix', 'fixed', 'needs-analysis', 'review-again');
+$conf['reviewers'] = array( '', 'dba1','dba2');
+$conf['review_types'] = array( '', 'good', 'bad', 'ticket-created', 'needs-fix', 'fixed', 'needs-analysis', 'review-again');
 
 /**
  * These are default values for reports.  You can choose which column headings you
@@ -133,7 +134,7 @@ $conf['history_defaults'] = array(
 	'fact-limit' => '90',
 	'dimension-ts_min_start' => date("Y-m-d H:i:s", strtotime( '-90 day')),
 	'dimension-ts_min_end'	=> date("Y-m-d H:i:s"),
-	'table_fields' => array('date', 'index_ratio','query_time_avg','rows_sent_avg','ts_cnt','Query_time_sum','Lock_time_sum','Rows_sent_sum','Rows_examined_sum','Tmp_table_sum','Filesort_sum','Full_scan_sum')
+	'table_fields' => array('date', 'index_ratio','query_time_avg','rows_sent_avg','ts_cnt','Query_time_sum','Lock_time_sum','Rows_sent_sum','Rows_examined_sum')
 );
 
 $conf['report_defaults'] = array(
@@ -142,8 +143,9 @@ $conf['report_defaults'] = array(
 	'fact-limit' => '20',
 	'dimension-ts_min_start' => date("Y-m-d H:i:s", strtotime( '-1 day')),
 	'dimension-ts_min_end'	=> date("Y-m-d H:i:s"),
-	'table_fields' => array('checksum','snippet', 'index_ratio','query_time_avg','rows_sent_avg','ts_cnt','Query_time_sum','Lock_time_sum','Rows_sent_sum','Rows_examined_sum','Tmp_table_sum','Filesort_sum','Full_scan_sum'),
-	'dimension-pivot-hostname_max' => null
+	'table_fields' => array('checksum','snippet', 'category', 'index_ratio','query_time_avg','rows_sent_avg','ts_cnt','Query_time_sum','Lock_time_sum','Rows_sent_sum','Rows_examined_sum'),
+	'dimension-pivot-hostname_max' => null,
+	'fact-pivot-category_id' => null
 );
 
 $conf['graph_defaults'] = array(
@@ -163,7 +165,7 @@ $conf['report_defaults']['performance_schema'] = array(
 	'fact-order'	=> 'SUM_TIMER_WAIT DESC',
 	'fact-limit' => '20',
 	'fact-group' => 'DIGEST',
-	'table_fields' => array( 'DIGEST', 'snippet', 'index_ratio', 'COUNT_STAR', 'SUM_TIMER_WAIT', 'SUM_LOCK_TIME','SUM_ROWS_AFFECTED','SUM_ROWS_SENT','SUM_ROWS_EXAMINED','SUM_CREATED_TMP_TABLES','SUM_SORT_SCAN','SUM_NO_INDEX_USED' )
+	'table_fields' => array( 'DIGEST', 'snippet', 'category', 'index_ratio', 'COUNT_STAR', 'SUM_TIMER_WAIT', 'SUM_LOCK_TIME','SUM_ROWS_AFFECTED','SUM_ROWS_SENT','SUM_ROWS_EXAMINED','SUM_CREATED_TMP_TABLES','SUM_SORT_SCAN','SUM_NO_INDEX_USED' )
 );
 
 // these are the default values for mysql 5.6 performance schema datasources
@@ -182,7 +184,7 @@ $conf['report_defaults']['performance_schema_history'] = array(
 	'fact-limit' => '20',
 	'dimension-FIRST_SEEN_start' => date("Y-m-d H:i:s", strtotime( '-1 day')),
 	'dimension-FIRST_SEEN_end'	=> date("Y-m-d H:i:s"),
-	'table_fields' => array( 'DIGEST', 'snippet', 'index_ratio', 'COUNT_STAR', 'SUM_LOCK_TIME','SUM_ROWS_AFFECTED','SUM_ROWS_SENT','SUM_ROWS_EXAMINED','SUM_CREATED_TMP_TABLES','SUM_SORT_SCAN','SUM_NO_INDEX_USED' )
+	'table_fields' => array( 'DIGEST', 'snippet', 'category', 'index_ratio', 'COUNT_STAR', 'SUM_LOCK_TIME','SUM_ROWS_AFFECTED','SUM_ROWS_SENT','SUM_ROWS_EXAMINED','SUM_CREATED_TMP_TABLES','SUM_SORT_SCAN','SUM_NO_INDEX_USED' )
 );
 
 $conf['graph_defaults']['performance_schema_history'] = array(
@@ -195,7 +197,8 @@ $conf['graph_defaults']['performance_schema_history'] = array(
 	// hack ... fix is to make query builder select the group and order fields,
 	// then table fields only has to contain the plot_field
 	'plot_field' => 'SUM_TIMER_WAIT',
-	'dimension-pivot-hostname_max' => null
+	'dimension-pivot-hostname_max' => null,
+	'fact-pivot-category_id' => null
 );
 
 $conf['history_defaults']['performance_schema_history'] = array(
@@ -205,7 +208,7 @@ $conf['history_defaults']['performance_schema_history'] = array(
 	'fact-limit' => '90',
 	'dimension-FIRST_SEEN_start' => date("Y-m-d H:i:s", strtotime( '-90 day')),
 	'dimension-FIRST_SEEN_end'	=> date("Y-m-d H:i:s"),
-	'table_fields' => array( 'date', 'snippet', 'index_ratio', 'COUNT_STAR', 'SUM_LOCK_TIME','SUM_ROWS_AFFECTED','SUM_ROWS_SENT','SUM_ROWS_EXAMINED','SUM_CREATED_TMP_TABLES','SUM_SORT_SCAN','SUM_NO_INDEX_USED' )
+	'table_fields' => array( 'date', 'snippet', 'category', 'index_ratio', 'COUNT_STAR', 'SUM_LOCK_TIME','SUM_ROWS_AFFECTED','SUM_ROWS_SENT','SUM_ROWS_EXAMINED','SUM_CREATED_TMP_TABLES','SUM_SORT_SCAN','SUM_NO_INDEX_USED' )
 );
 /**
  * Plugins are optional extra information that can be displayed, but often
@@ -307,7 +310,8 @@ $conf['plugins'] = array(
 $conf['reports']['slow_query_log'] = array(
 	// joins
 	'join'	=> array (
-		'dimension'	=> 'USING (`checksum`)'
+		'dimension'	=> 'USING (`checksum`)',
+		'categories'	=> 'USING (`category_id`)',
 	),
 
 	// form fields
@@ -345,7 +349,8 @@ $conf['reports']['slow_query_log'] = array(
 		'hour_ts'	=> 'round(unix_timestamp(substring(ts_min,1,13)))',
 		'minute_ts'     => 'round(unix_timestamp(substring(ts_min,1,16)))',
 		'minute'        => 'substring(ts_min,1,16)',
-		'snippet' => 'LEFT(dimension.sample,20)',
+		'snippet' => 'CONCAT(LEFT(dimension.sample,40), " ...")',
+		'category' => 'categories.category_name',
 		'index_ratio' =>'ROUND(SUM(Rows_examined_sum)/SUM(rows_sent_sum),2)',
 		'query_time_avg' => 'SUM(Query_time_sum) / SUM(ts_cnt)',
 		'rows_sent_avg' => 'ROUND(SUM(Rows_sent_sum)/SUM(ts_cnt),0)',
@@ -377,7 +382,8 @@ $conf['reports']['performance_schema'] = array(
 	),
 	// custom fields
 	'custom_fields'	=> array(
-		'snippet' => 'LEFT(fact.DIGEST_TEXT,20)',
+		'snippet' => 'CONCAT(LEFT(fact.DIGEST_TEXT,40), " ...")',
+		'category' => 'category.category_name',
 		'index_ratio' =>'ROUND(SUM_ROWS_EXAMINED/SUM_ROWS_SENT,2)',
 		'rows_sent_avg' => 'ROUND(SUM_ROWS_SENT/COUNT_STAR,0)',
 
@@ -394,7 +400,8 @@ $conf['reports']['performance_schema'] = array(
 $conf['reports']['performance_schema_history'] = array(
 	// joins
 	'join'	=> array (
-		'dimension'	=> 'USING (`DIGEST`)'
+		'dimension'	=> 'USING (`DIGEST`)',
+		'categories'	=> 'USING (`category_id`)',
 	),
 
 	// form fields
@@ -409,7 +416,8 @@ $conf['reports']['performance_schema_history'] = array(
 			'DIGEST_TEXT'	=> 'clear|like|where',
 			'DIGEST'	=>	'clear|where',
 			'reviewed_status' => 'clear|where',
-			'caetgory_id'     => 'clear|where',
+			'category_id'     => 'clear|where',
+
 		),
 
 		'dimension' => array(
@@ -422,7 +430,8 @@ $conf['reports']['performance_schema_history'] = array(
 	// custom fields
 	'custom_fields'	=> array(
 		'date'	=> 'DATE(fact.FIRST_SEEN)',
-		'snippet' => 'LEFT(fact.DIGEST_TEXT,20)',
+		'snippet' => 'CONCAT(LEFT(fact.DIGEST_TEXT,40), " ...")',
+		'category' => 'category.category_name',
 		'index_ratio' =>'ROUND(SUM_ROWS_EXAMINED/SUM_ROWS_SENT,2)',
 		'rows_sent_avg' => 'ROUND(SUM_ROWS_SENT/COUNT_STAR,0)',
 		'hour'	=> 'substring(dimension.FIRST_SEEN,1,13)',
@@ -435,6 +444,7 @@ $conf['reports']['performance_schema_history'] = array(
 		'time'	 	=> 'FIRST_SEEN',
 		'checksum'	=> 'DIGEST',
 		'hostname'	=> 'hostname',
+		'category_id'	=> 'category_id',
 		'sample'	=> 'DIGEST_TEXT'
 	),
 );

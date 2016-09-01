@@ -11,7 +11,7 @@
 			</div>
 		</div>
 
-		<div class="span4">
+		<div class="span3">
 			To<br>
 			<div class="input-append">
 				<input type="text" class="span2" name="dimension-<?php echo $time_field_name ?>_end" id="dimension-ts_min_end" value="<?php echo get_var("dimension-{$time_field_name}_end"); ?>">
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 
-	<div class="span4">
+	<div class="span3">
 		Column to plot<br>
 		<select name="plot_field" class="span3">
 				<optgroup label="Custom Fields">
@@ -50,13 +50,24 @@
 			<input type="checkbox" name="<?php echo "dimension-pivot-{$hostname_field_name}" ?>" value='<?php echo $time_field_name ?>'<?php echo (isset($dimension_pivot_hostname_max) ? ' CHECKED ' : '') ?>> Show each host as a separate series
 		</div>
 
-		<div class="span4" >
+		<div class="span3" >
 			Checksum<br>
-			<input name="fact-<?php echo $checksum_field_name ?>" class="span4 typeahead" value="<?php echo get_var('fact-'.$checksum_field_name) ?>">
+			<input name="fact-<?php echo $checksum_field_name ?>" class="span3 typeahead" value="<?php echo get_var('fact-'.$checksum_field_name) ?>">
             <input type="checkbox" name="<?php echo "dimension-pivot-{$checksum_field_name}" ?>" value='<?php echo $time_field_name ?>'<?php echo (isset($dimension_pivot_checksum) ? ' CHECKED ' : '') ?>> Show top queries as a separate series
 		</div>
 
-		<div class="span4">
+		<div class="span3" >
+			Filter By Category<br>
+			<select name="fact-<?php echo $category_field_name ?>" class="span3 combobox">
+				<option value=""></option>
+				<?php foreach ($category_list as $ct_row ) { ?>
+					<option value="<?php echo $ct_row["category_id"] ?>" <?php if (get_var("fact-{$category_field_name}")!=null AND get_var("fact-{$category_field_name}") == $ct_row["category_id"] ){ echo ' SELECTED '; } ?>><?php echo $ct_row["category_name"] ?></option>
+				<?php } ?>
+			</select>
+			<!--<input type="checkbox" name="<?php echo "fact-pivot-{$category_field_name}" ?>" value='<?php echo $time_field_name ?>'<?php echo (isset($fact_pivot_category_id) ? ' CHECKED ' : '') ?>> Show each category as a separate series-->
+		</div>
+
+		<div class="span3">
 
 				<input type="submit" class="btn-primary btn-large" name="submit" value="Search">
 

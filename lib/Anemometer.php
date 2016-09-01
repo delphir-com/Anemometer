@@ -183,6 +183,7 @@ class Anemometer {
         $data['time_field_name'] = $time;
         $data['hostname_field_name'] = $this->data_model->get_field_name('hostname');
         $data['checksum_field_name'] = $this->data_model->get_field_name('checksum');
+        $data['category_field_name'] = $this->data_model->get_field_name('category_id');
 
         // get table and hostname data for search form
         $data['tables'] = $this->report_obj->get_tables();
@@ -191,6 +192,11 @@ class Anemometer {
         // check
         $data[$data['hostname_field_name']] = get_var($data['hostname_field_name']);
         $this->report_obj->set_pivot_values('dimension-pivot-'.$data['hostname_field_name'], $data['hosts']);
+
+        $data['category_list'] = $this->data_model->get_category_list();
+        $data[$data['category_field_name']] = get_var($data['category_field_name']);
+        $this->report_obj->set_pivot_values('dimension-pivot-'.$data['category_field_name'], $data['category_list']);
+
 
         // get custom fields for search form
         foreach ($data['tables'] as $t) {
@@ -208,6 +214,10 @@ class Anemometer {
         if (get_var('dimension-pivot-'.$data['checksum_field_name'])) {
             $_GET['dimension-pivot-'.$data['checksum_field_name']] = get_var('plot_field');
             $data['dimension_pivot_checksum'] = get_var('plot_field');
+        }
+        if (get_var('fact-pivot-'.$data['category_field_name'])) {
+            $_GET['fact-pivot-'.$data['category_field_name']] = get_var('plot_field');
+            $data['fact_pivot_category_id'] = get_var('plot_field');
         }
 
         $data['ajax_request_url'] = site_url() . '?action=api&output=json2&noheader=1&datasource=' . $data['datasource'] . '&' . $this->report_obj->get_search_uri(array( 'dimension-'.$time));
@@ -300,6 +310,11 @@ class Anemometer {
                 $data['hosts'] = $this->report_obj->get_distinct_values($data['tables'][1], $fieldname);
                 $data[$fieldname] = get_var('dimension-'.$fieldname);
                 $this->report_obj->set_pivot_values('dimension-pivot-'.$fieldname, $data['hosts']);
+
+                $fieldname = $this->data_model->get_field_name('category_id');
+                $data['category_list'] = $this->data_model->get_category_list();
+                $data[$fieldname] = get_var('dimension-'.$fieldname);
+                $this->report_obj->set_pivot_values('dimension-pivot-'.$fieldname, $data['category_list']);
             }
 
             // $data['fields = $this->report_obj->get_form_fields();
@@ -470,6 +485,10 @@ class Anemometer {
             // check
             $data[$data['hostname_field_name']] = get_var($data['hostname_field_name']);
             $this->report_obj->set_pivot_values('dimension-pivot-'.$data['hostname_field_name'], $data['hosts']);
+
+            $data['category_list'] = $this->data_model->get_category_list();
+            $data[$data['category_field_name']] = get_var($data['category_field_name']);
+            $this->report_obj->set_pivot_values('dimension-pivot-'.$data['category_field_name'], $data['category_list']);
         }
 
         // get custom fields for search form
@@ -488,6 +507,11 @@ class Anemometer {
         if (get_var('dimension-pivot-'.$data['checksum_field_name'])) {
             $_GET['dimension-pivot-'.$data['checksum_field_name']] = get_var('plot_field');
             $data['dimension_pivot_checksum'] = get_var('plot_field');
+        }
+
+        if (get_var('fact-pivot-'.$data['category_field_name'])) {
+            $_GET['fact-pivot-'.$data['category_field_name']] = get_var('plot_field');
+            $data['fact_pivot_category_id'] = get_var('plot_field');
         }
         //$data = $this->setup_data_for_graph_search($data);
 
