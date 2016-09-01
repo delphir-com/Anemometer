@@ -362,7 +362,7 @@ $(document).ready( function ()  {
 					<input type="hidden" id="new_category_id" name="new_category_id" value=""/>
 					<strong>Category: </strong><br><select id="category_id" name="category_id" class="selectize" style="width: 400px;">
 						<?php foreach ($category_list as $ct_row ) { ?>
-							<option value="<?php echo $ct_row["category_id"] ?>" <?php if ($row['category_id'] == $ct_row["category_id"]) { echo ' SELECTED '; } ?>><?php echo $ct_row["category_name"] ?></option>
+							<option value="<?php echo $ct_row["category_id"] ?: '' ?>" <?php if ($row['category_id'] == $ct_row["category_id"]) { echo ' SELECTED '; } ?>><?php echo $ct_row["category_name"] ?></option>
 						<?php } ?>
 					</select><br>
 

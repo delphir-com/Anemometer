@@ -84,7 +84,7 @@ class AnemometerModel {
 
     public function get_category_list() {
 
-        $result = $this->mysqli->query("SELECT category_id, category_name FROM categories ORDER BY category_name");
+        $result = $this->mysqli->query("SELECT category_id, category_name FROM categories WHERE category_id > 0 ORDER BY category_name");
 
         $result_data = array();
         $result_data[] = ['category_id' => 0, 'category_name' => "* No category set"];
