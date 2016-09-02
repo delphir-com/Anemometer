@@ -72,6 +72,17 @@
       #quicksearch{
       	margin-bottom: 0; /* prevent quicksearch form from expanding navbar height */
       }
+
+      .align-left{
+        text-align: left !important;
+      }
+      .align-right{
+        text-align: right !important;
+      }
+      .align-center{
+        text-align: center !important;
+      }
+
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 

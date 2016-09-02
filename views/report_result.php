@@ -61,7 +61,7 @@ $( function ()  {
 					<?php }  else if ($c == 'DIGEST') { ?>
 							<td><a href="<?php echo site_url()."?action=show_query&datasource={$datasource}&checksum=".$row[$c]; ?>"><?php echo $row[$c]; ?></a></td>
 					<?php } else { ?>
-						<td><?php echo $row[$c]; ?></td>
+						<td class="<?php echo isset($result_styles[$c]) ? $result_styles[$c] : '' ?>"><?php echo $row[$c]; ?></td>
 					<?php } ?>
 				<?php } ?>
 			</tr>

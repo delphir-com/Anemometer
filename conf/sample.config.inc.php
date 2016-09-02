@@ -452,6 +452,32 @@ $conf['reports']['performance_schema_history'] = array(
 	),
 );
 
+$conf['column_aligning'] = array(
+	'checksum'       => 'align-left',
+	'date'	         => 'align-center',
+	'hour'           => 'align-center',
+	'hour_ts'		 => 'align-right',
+	'minute_ts'      => 'align-right',
+	'minute'         => 'align-right',
+	'snippet'        => 'align-left',
+	'category'       => 'align-left',
+	'index_ratio'    => 'align-right',
+	'query_time_avg' => 'align-right',
+	'rows_sent_avg'  => 'align-right',
+
+	'ts_cnt'         => 'align-right',
+	'Query_time_sum' => 'align-right',
+	'Lock_time_sum'  => 'align-right',
+	'Rows_sent_sum'  => 'align-right',
+	'Rows_examined_sum' => 'align-right',
+
+
+
+
+
+
+);
+
 /**
  * end of configuration settings
  */
