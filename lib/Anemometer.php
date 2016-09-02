@@ -110,6 +110,7 @@ class Anemometer {
         try
         {
             $data['sql'] = $this->report_obj->query();
+            $data['result'] = []; // this value will be left in case of sql problems
             $data['result'] = $this->report_obj->execute();
         }
         catch (Exception $e)
