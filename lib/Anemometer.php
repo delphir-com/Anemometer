@@ -400,6 +400,8 @@ class Anemometer {
      *
      */
     public function show_query() {
+        $data['current_auth_user'] = $this->get_auth_user(); // must be called before header output
+
         $this->header();
         $output = 'table';
         $checksum = $this->translate_checksum(get_var('checksum'));
@@ -442,7 +444,6 @@ class Anemometer {
         $data['category_list'] = $this->data_model->get_category_list();
         $data['review_types'] = $this->data_model->get_review_types();
         $data['reviewers'] = $this->data_model->get_reviewers();
-        $data['current_auth_user'] = $this->get_auth_user();
 
 
         $data['show_samples'] = true;
@@ -475,7 +476,7 @@ class Anemometer {
         $data['hostname_field_name'] = $this->data_model->get_field_name('hostname');
         $data['checksum_field_name'] = $this->data_model->get_field_name('checksum');
         $data['category_field_name'] = $this->data_model->get_field_name('category_id');
-        
+
         $data['timezone_offset'] = $this->timezone_offset;
 
         $data['tables'] = $this->report_obj->get_tables();
