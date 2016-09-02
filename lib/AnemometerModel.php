@@ -134,6 +134,8 @@ class AnemometerModel {
                 $this->fact_table = $key;
             } elseif ($alias == 'dimension') {
                 $this->dimension_table = $key;
+            } elseif ($alias == 'categories') {
+                $this->categories_table = $key;
             }
         }
 
