@@ -474,7 +474,8 @@ class Anemometer {
         $data['time_field_name'] = $time = $this->data_model->get_field_name('time');
         $data['hostname_field_name'] = $this->data_model->get_field_name('hostname');
         $data['checksum_field_name'] = $this->data_model->get_field_name('checksum');
-
+        $data['category_field_name'] = $this->data_model->get_field_name('category_id');
+        
         $data['timezone_offset'] = $this->timezone_offset;
 
         $data['tables'] = $this->report_obj->get_tables();
