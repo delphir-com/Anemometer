@@ -340,6 +340,9 @@ $conf['reports']['slow_query_log'] = array(
 			'pivot-hostname_max' => 'clear|pivot|select',
 			'pivot-checksum' => 'clear|pivot|select',
 		),
+		'categories' => array(
+
+		)
 	),
 	// custom fields
 	'custom_fields'	=> array(
