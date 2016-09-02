@@ -355,7 +355,7 @@ $conf['reports']['slow_query_log'] = array(
 		'snippet' => 'CONCAT(LEFT(dimension.sample,40), " ...")',
 		'category' => 'categories.category_name',
 		'index_ratio' =>'ROUND(SUM(Rows_examined_sum)/SUM(rows_sent_sum),2)',
-		'query_time_avg' => 'SUM(Query_time_sum) / SUM(ts_cnt)',
+		'query_time_avg' => 'TRUNCATE(SUM(Query_time_sum) / SUM(ts_cnt), 2)',
 		'rows_sent_avg' => 'ROUND(SUM(Rows_sent_sum)/SUM(ts_cnt),0)',
 	),
 
