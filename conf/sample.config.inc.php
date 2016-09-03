@@ -452,29 +452,24 @@ $conf['reports']['performance_schema_history'] = array(
 	),
 );
 
-$conf['column_aligning'] = array(
-	'checksum'       => 'align-left',
-	'date'	         => 'align-center',
-	'hour'           => 'align-center',
-	'hour_ts'		 => 'align-right',
-	'minute_ts'      => 'align-right',
-	'minute'         => 'align-right',
-	'snippet'        => 'align-left',
-	'category'       => 'align-left',
-	'index_ratio'    => 'align-right',
-	'query_time_avg' => 'align-right',
-	'rows_sent_avg'  => 'align-right',
+$conf['column_styling'] = array(
+	'checksum'          => ['class' => 'align-left',   'format' => '%s'],
+	'date'	            => ['class' => 'align-center', 'format' => '%s'],
+	'hour'              => ['class' => 'align-center', 'format' => '%s'],
+	'hour_ts'		    => ['class' => 'align-right',  'format' => '%s'],
+	'minute_ts'         => ['class' => 'align-right',  'format' => '%s'],
+	'minute'            => ['class' => 'align-right',  'format' => '%s'],
+	'snippet'           => ['class' => 'align-left',   'format' => '%s'],
+	'category'          => ['class' => 'align-left',   'format' => '%s'],
+	'index_ratio'       => ['class' => 'align-right',  'format' => '%.2f'],
+	'query_time_avg'    => ['class' => 'align-right',  'format' => '%.2f'],
+	'rows_sent_avg'     => ['class' => 'align-right',  'format' => '%.0f'],
 
-	'ts_cnt'         => 'align-right',
-	'Query_time_sum' => 'align-right',
-	'Lock_time_sum'  => 'align-right',
-	'Rows_sent_sum'  => 'align-right',
-	'Rows_examined_sum' => 'align-right',
-
-
-
-
-
+	'ts_cnt'            => ['class' => 'align-right',  'format' => '%.0f'],
+	'Query_time_sum'    => ['class' => 'align-right',  'format' => '%.0f'],
+	'Lock_time_sum'     => ['class' => 'align-right',  'format' => '%.3f'],
+	'Rows_sent_sum'     => ['class' => 'align-right',  'format' => '%.0f'],
+	'Rows_examined_sum' => ['class' => 'align-right',  'format' => '%.0f'],
 
 );
 

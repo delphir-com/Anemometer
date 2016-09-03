@@ -37,7 +37,7 @@ $( function ()  {
 		<thead>
 			<tr>
 				<?php foreach ($columns as $c ) { ?>
-					<th><?php echo $c ?></th>
+					<th class="<?php echo (isset($result_styles[$c]) and isset($result_styles[$c]['class'])) ? $result_styles[$c]['class'] : '' ?>"><?php echo $c ?></th>
 				<?php } ?>
 			</tr>
 		</thead>
@@ -61,7 +61,10 @@ $( function ()  {
 					<?php }  else if ($c == 'DIGEST') { ?>
 							<td><a href="<?php echo site_url()."?action=show_query&datasource={$datasource}&checksum=".$row[$c]; ?>"><?php echo $row[$c]; ?></a></td>
 					<?php } else { ?>
-						<td class="<?php echo isset($result_styles[$c]) ? $result_styles[$c] : '' ?>"><?php echo $row[$c]; ?></td>
+						<td class="<?php echo (isset($result_styles[$c]) and isset($result_styles[$c]['class'])) ? $result_styles[$c]['class'] : '' ?>">
+							<?php echo sprintf( (isset($result_styles[$c]) and isset($result_styles[$c]['format'])) ? $result_styles[$c]['format'] : '%s', $row[$c]) ?>
+
+						</td>
 					<?php } ?>
 				<?php } ?>
 			</tr>

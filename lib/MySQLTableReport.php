@@ -904,7 +904,7 @@ class MySQLTableReport {
                                         if (isset($k[2])) {
                                             // aggregate function on the column
                                             $k[0] = MySQLTableReport::remove_schema_name($k[0]);
-                                            return sprintf("TRUNCATE(%s(%s), 2) AS `%s`", $k[2], $k[0], isset($k[1]) ? $k[1] : $k[0]);
+                                            return sprintf("%s(%s) AS `%s`", $k[2], $k[0], isset($k[1]) ? $k[1] : $k[0]);
                                         }
                                         // non aggregate column
                                         return "" . $k[0] . "" . ( isset($k[1]) ? ' AS `' . $k[1] . '`' : '');
