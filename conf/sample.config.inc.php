@@ -143,7 +143,7 @@ $conf['report_defaults'] = array(
 	'fact-limit' => '20',
 	'dimension-ts_min_start' => date("Y-m-d H:i:s", strtotime( '-1 day')),
 	'dimension-ts_min_end'	=> date("Y-m-d H:i:s"),
-	'table_fields' => array('checksum','snippet', 'category', 'index_ratio','query_time_avg','rows_sent_avg','ts_cnt','Query_time_sum','Lock_time_sum','Rows_sent_sum','Rows_examined_sum'),
+	'table_fields' => array('checksum','fact.reviewed_status','snippet', 'category', 'index_ratio','query_time_avg','rows_sent_avg','ts_cnt','Query_time_sum','Lock_time_sum','Rows_sent_sum','Rows_examined_sum'),
 	'dimension-pivot-hostname_max' => null,
 	'fact-pivot-category_id' => null
 );

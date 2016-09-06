@@ -228,7 +228,7 @@ $(document).ready( function ()  {
 	<div class="row">
 		<div class="span12">
 			<strong>Fingerprint</strong><br>
-			<pre class="prettyprint lang-sql"><?php echo $row['fingerprint']; ?></pre>
+			<pre class="prettyprint lang-sql"><?php echo htmlspecialchars($row['fingerprint']); ?></pre>
 		</div>
 	</div>
 	<hr>
@@ -258,7 +258,7 @@ $(document).ready( function ()  {
 					</td>
 				</tr>
 				</table>
-				<pre class="prettyprint lang-sql"><?php echo $sample[$sample_field_name]; ?></pre>
+				<pre class="prettyprint lang-sql"><?php echo htmlspecialchars($sample[$sample_field_name]); ?></pre>
 				<?php } ?>
 
 		<?php if (isset($explain_plan_error)) { ?>
