@@ -367,7 +367,7 @@ $(document).ready( function ()  {
 					</select><br>
 
 					<strong>Status: </strong><br><select name="reviewed_status" class="combobox">
-						<?php foreach ($review_types as $rt_k => $rt_v) { ?>
+						<?php foreach ($review_types as $rt_k => $rt_v) { if (!$rt_k) continue; ?>
 							<option value="<?php echo $rt_k ?>" <?php if (trim($row['reviewed_status']) === trim($rt_k) ) { echo ' SELECTED '; } ?>><?php echo $rt_v ?></option>
 						<?php } ?>
 					</select><br>
