@@ -117,8 +117,8 @@
 		Reviewed Status<br>
 		<select class="span4 combobox" name="fact-reviewed_status">
 			<option value=""></option>
-		<?php foreach ($review_types as $rt) { ?>
-				<option value="<?php echo $rt ?>" <?php if (get_var('fact-reviewed_status') == $rt) { echo ' SELECTED '; } ?>><?php echo $rt ?></option>
+		<?php foreach ($review_types as $rt_k => $rt_v) { ?>
+				<option value="<?php echo $rt_k ?>" <?php if (trim(get_var('fact-reviewed_status')) === trim($rt_k)) { echo ' SELECTED '; } ?>><?php echo $rt_v ?></option>
 		<?php } ?>
 		</select><br>
 		

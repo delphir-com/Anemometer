@@ -108,6 +108,7 @@ class Anemometer {
         $data = array();
         $data['datasource'] = get_var('datasource');
         $data['result_styles'] = $this->conf['column_styling'];
+        $data['review_types'] = $this->data_model->get_review_types();
 
         try
         {

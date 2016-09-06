@@ -367,8 +367,8 @@ $(document).ready( function ()  {
 					</select><br>
 
 					<strong>Status: </strong><br><select name="reviewed_status" class="combobox">
-						<?php foreach ($review_types as $rt) { ?>
-							<option value="<?php echo $rt ?>" <?php if ($row['reviewed_status'] == $rt) { echo ' SELECTED '; } ?>><?php echo $rt ?></option>
+						<?php foreach ($review_types as $rt_k => $rt_v) { ?>
+							<option value="<?php echo $rt_k ?>" <?php if (trim($row['reviewed_status']) === trim($rt_k) ) { echo ' SELECTED '; } ?>><?php echo $rt_v ?></option>
 						<?php } ?>
 					</select><br>
 					<strong>Reviewed By: </strong><br><select name="reviewed_by" class="combobox">

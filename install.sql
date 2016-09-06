@@ -20,7 +20,7 @@ CREATE TABLE `global_query_review` (
   `reviewed_by` varchar(20) DEFAULT NULL,
   `reviewed_on` datetime DEFAULT NULL,
   `comments` text,
-  `reviewed_status` varchar(24) DEFAULT NULL,
+  `reviewed_status` varchar(24) DEFAULT 'none',
   `category_id` INT DEFAULT 0 NULL,
   PRIMARY KEY (`checksum`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

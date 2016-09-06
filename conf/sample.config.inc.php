@@ -109,7 +109,16 @@ $conf['default_report_action'] = 'report';
  * can be set when you review a query.
  **/
 $conf['reviewers'] = array( '', 'dba1','dba2');
-$conf['review_types'] = array( '', 'good', 'bad', 'ticket-created', 'needs-fix', 'fixed', 'needs-analysis', 'review-again');
+$conf['review_types'] = array(
+	''               => '** All records',
+	'none'           => '* Not reviewed',
+	'good'           => 'Good',
+	'bad'            => 'Bad',
+	'ticket-created' => 'Ticket Created',
+	'needs-fix'      => 'Needs Fix',
+	'fixed'          => 'Fixed',
+	'needs-analysis' => 'Needs Analysis',
+	'review-again'   => 'Review Again');
 
 /**
  * These are default values for reports.  You can choose which column headings you
